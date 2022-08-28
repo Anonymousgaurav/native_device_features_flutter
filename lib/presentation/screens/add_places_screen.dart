@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:native_device_features/presentation/widgets/location_input.dart';
 import 'package:native_device_features/provider/great_places.dart';
 import 'package:provider/provider.dart';
 
@@ -31,6 +32,10 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
     Navigator.of(context).pop();
   }
 
+  void _selectPlace(double lat, double lng) {
+    _pickedLocation = PlaceLocation(latitude: lat, longitude: lng);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,10 +55,14 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                       decoration: InputDecoration(labelText: 'Title'),
                       controller: _titleController,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     ImageInput(_selectImage),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    LocationInput(_selectPlace),
                   ],
                 ),
               ),
